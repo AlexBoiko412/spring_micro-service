@@ -8,8 +8,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.UUID;
+ import java.util.UUID;
 
 @Entity
 public class Patient {
