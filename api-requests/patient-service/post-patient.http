@@ -1,0 +1,13 @@
+### POST patient request
+POST http://localhost:8080/patients
+Content-Type: application/json
+
+{
+  "name": "",
+  "email": "",
+  "address": "",
+  "dateOfBirth": "1985-10-28",
+  "registerDate": "2025-10-10"
+}
+
+###
