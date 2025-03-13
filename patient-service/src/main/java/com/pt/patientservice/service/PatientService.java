@@ -49,6 +49,13 @@ public class PatientService {
                         "Patient doesnt exist with ID: " + id)
                 );
 
+        if(patientRepository.existsByEmailAndIdNot(patientRequestDTO.getEmail(), id)) {
+            throw new EmailAlreadyExistsException(
+                    "Another patient with this email already exists: "
+                            + patientRequestDTO.getEmail()
+            );
+        }
+
         patient.setEmail(patientRequestDTO.getEmail());
         patient.setName(patientRequestDTO.getName());
         patient.setAddress(patientRequestDTO.getAddress());
