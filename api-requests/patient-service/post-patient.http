@@ -3,8 +3,8 @@ POST http://localhost:8080/patients
 Content-Type: application/json
 
 {
-  "name": "Alex Boiko",
-  "email": "bobgub546@gmail.com",
+  "name": "bill acc Alex Boiko",
+  "email": "bill_accbob546@gmail.com",
   "address": "152 Saf eEfjn",
   "dateOfBirth": "1985-10-28",
   "registerDate": "2025-10-10"
