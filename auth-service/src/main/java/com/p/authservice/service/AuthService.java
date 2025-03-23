@@ -2,8 +2,6 @@ package com.p.authservice.service;
 
 import com.p.authservice.dto.LoginRequestDTO;
 import com.p.authservice.util.JwtUtil;
-import io.jsonwebtoken.security.Password;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
