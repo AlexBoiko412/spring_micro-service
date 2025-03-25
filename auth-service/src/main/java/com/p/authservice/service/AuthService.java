@@ -34,7 +34,7 @@ public class AuthService {
                 )
                 .map(u ->
                         jwtUtil.generateToken(u.getEmail(), u.getRole())
-                        );
+                );
 
         return token;
     }
