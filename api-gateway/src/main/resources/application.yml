@@ -5,6 +5,14 @@ spring:
   cloud:
     gateway:
       routes:
+
+        - id: auth-service-route
+          uri: http://auth-service:8085
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+
         - id: patient-service-route
           uri: http://patient-service:8080
           predicates:
@@ -18,3 +26,4 @@ spring:
             - Path=/api-docs/patients
           filters:
             - RewritePath=/api-docs/patients,/v3/api-docs
+
