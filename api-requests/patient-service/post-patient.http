@@ -1,5 +1,6 @@
 ### POST patient request
 POST http://localhost:8084/api/patients
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {

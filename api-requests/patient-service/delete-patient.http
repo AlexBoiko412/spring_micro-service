@@ -1,4 +1,4 @@
 ### GET request to example server
 DELETE http://localhost:8084/api/patients/550e8400-e29b-41d4-a716-446655440009
-
+Authorization: Bearer {{token}}
 ###
