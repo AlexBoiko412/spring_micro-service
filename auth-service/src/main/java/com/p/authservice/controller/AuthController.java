@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 public class AuthController {
-      private final AuthService authService;
+    private final AuthService authService;
 
     public AuthController(AuthService authService) {
         this.authService = authService;
@@ -35,7 +35,7 @@ public class AuthController {
     @GetMapping("/validate")
     @Operation(summary = "Validate JWT Token")
     public ResponseEntity<Void> validateToken(@RequestHeader("Authorization") String authHeader) {
-        if(authHeader == null || authHeader.startsWith("Bearer ")) {
+        if(authHeader == null || !authHeader.startsWith("Bearer ")) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
