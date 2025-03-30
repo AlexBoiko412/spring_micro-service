@@ -1,13 +1,27 @@
 package com.p.stack;
 
+
 import software.amazon.awscdk.*;
+import software.amazon.awscdk.services.ec2.Vpc;
 
 public class LocalStack extends Stack {
+    private final Vpc vpc;
 
-    public LocalStack(final App app, final String id, StackProps props) {
+    public LocalStack(
+            final App app,
+            final String id,
+            StackProps props
+    ) {
         super(app, id, props);
-        software.amazon.awscdk.services.s3.Bucket.Builder.create(this, "MyBucket")
-                .versioned(true)
+
+        this.vpc = createVpc();
+    }
+
+    private Vpc createVpc() {
+        return Vpc.Builder
+                .create(this, "PatientVPC")
+                .vpcName("PatientVPC")
+                .maxAzs(2)
                 .build();
     }
 
