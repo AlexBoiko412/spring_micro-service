@@ -1,8 +1,6 @@
 package com.p.stack;
 
 import software.amazon.awscdk.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class LocalStack extends Stack {
 
