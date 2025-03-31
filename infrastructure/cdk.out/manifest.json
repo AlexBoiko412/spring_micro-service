@@ -149,6 +149,66 @@
             "type": "aws:cdk:logicalId",
             "data": "PatientVPCVPCGW7C3F6F23"
           }
+        ],
+        "/localstack/AuthDB/SubnetGroup/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthDBSubnetGroup3D6A7CD1"
+          }
+        ],
+        "/localstack/AuthDB/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthDBSecurityGroup7F3F9EF7"
+          }
+        ],
+        "/localstack/AuthDB/Secret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "localstackAuthDBSecret30475BBA3fdaad7efa858a3daf9490cf0a702aeb"
+          }
+        ],
+        "/localstack/AuthDB/Secret/Attachment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthDBSecretAttachmentB7FB221F"
+          }
+        ],
+        "/localstack/AuthDB/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthDBD9149197"
+          }
+        ],
+        "/localstack/PatientDB/SubnetGroup/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PatientDBSubnetGroupE6D3193B"
+          }
+        ],
+        "/localstack/PatientDB/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PatientDBSecurityGroup5328F2B1"
+          }
+        ],
+        "/localstack/PatientDB/Secret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "localstackPatientDBSecretAE433EA33fdaad7efa858a3daf9490cf0a702aeb"
+          }
+        ],
+        "/localstack/PatientDB/Secret/Attachment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PatientDBSecretAttachmentC6CA24A0"
+          }
+        ],
+        "/localstack/PatientDB/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PatientDB17892A75"
+          }
         ]
       },
       "displayName": "localstack"
