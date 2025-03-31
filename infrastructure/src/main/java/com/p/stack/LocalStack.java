@@ -2,7 +2,11 @@ package com.p.stack;
 
 
 import software.amazon.awscdk.*;
+import software.amazon.awscdk.services.ec2.InstanceClass;
+import software.amazon.awscdk.services.ec2.InstanceSize;
+import software.amazon.awscdk.services.ec2.InstanceType;
 import software.amazon.awscdk.services.ec2.Vpc;
+import software.amazon.awscdk.services.rds.*;
 
 public class LocalStack extends Stack {
     private final Vpc vpc;
@@ -15,6 +19,9 @@ public class LocalStack extends Stack {
         super(app, id, props);
 
         this.vpc = createVpc();
+
+        DatabaseInstance authDatabase = createDatabaseInstance("AuthDB", "auth-database");
+        DatabaseInstance patientDatabase = createDatabaseInstance("PatientDB", "patient-database");
     }
 
     private Vpc createVpc() {
@@ -22,6 +29,23 @@ public class LocalStack extends Stack {
                 .create(this, "PatientVPC")
                 .vpcName("PatientVPC")
                 .maxAzs(2)
+                .build();
+    }
+
+    private DatabaseInstance createDatabaseInstance(String id, String dbName) {
+        return DatabaseInstance.Builder
+                .create(this, id)
+                .engine(DatabaseInstanceEngine.postgres(
+                        PostgresInstanceEngineProps.builder()
+                                .version(PostgresEngineVersion.VER_17_4)
+                                .build()
+                ))
+                .vpc(vpc)
+                .instanceType(InstanceType.of(InstanceClass.BURSTABLE2, InstanceSize.MICRO))
+                .allocatedStorage(20)
+                .credentials(Credentials.fromGeneratedSecret("admin_user"))
+                .databaseName(dbName)
+                .removalPolicy(RemovalPolicy.DESTROY)
                 .build();
     }
 
