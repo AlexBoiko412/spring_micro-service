@@ -642,6 +642,38 @@
      "Type": "TCP"
     }
    }
+  },
+  "MskCluster": {
+   "Type": "AWS::MSK::Cluster",
+   "Properties": {
+    "BrokerNodeGroupInfo": {
+     "BrokerAZDistribution": "DEFAULT",
+     "ClientSubnets": [
+      {
+       "Ref": "PatientVPCPrivateSubnet1SubnetD3423F29"
+      },
+      {
+       "Ref": "PatientVPCPrivateSubnet2Subnet668FC922"
+      }
+     ],
+     "InstanceType": "kafka.m5.xlarge"
+    },
+    "ClusterName": "kafka-cluster",
+    "KafkaVersion": "2.8.0",
+    "NumberOfBrokerNodes": 1
+   }
+  },
+  "PatientClusterA1FEDA0A": {
+   "Type": "AWS::ECS::Cluster"
+  },
+  "PatientClusterDefaultServiceDiscoveryNamespace7CD561DB": {
+   "Type": "AWS::ServiceDiscovery::PrivateDnsNamespace",
+   "Properties": {
+    "Name": "patient.local",
+    "Vpc": {
+     "Ref": "PatientVPC2805F29E"
+    }
+   }
   }
  }
 }
