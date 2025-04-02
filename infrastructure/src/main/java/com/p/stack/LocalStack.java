@@ -179,6 +179,7 @@ public class LocalStack extends Stack {
                                 .removalPolicy(RemovalPolicy.DESTROY)
                                 .retention(RetentionDays.ONE_DAY)
                                 .build())
+                        .streamPrefix(imageName)
                         .build()));
 
         Map<String, String> envVars = new HashMap<>();
