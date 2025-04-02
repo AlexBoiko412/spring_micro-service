@@ -37,6 +37,54 @@ public class LocalStack extends Stack {
         CfnCluster mskCluster = createMskCluster();
 
         this.ecsCluster = createEcsCluster();
+
+
+        FargateService authService = createFargateService(
+                "AuthService",
+                "auth-service",
+                List.of(8085),
+                authDatabase,
+                Map.of("JWT_SECRET", "97be7f834c55c5b3763378eed3bb4467fbe0f1e614bd94956f3b2fedb0013b3a70126c15ad370c4524213a4990a0da27b772fcd596944941456ba2f3bb6a88052951f2e79c16b2ba71e35e61309c4531976fe5cbe4572b1ae48572f1a26563ae10da06a9e485a4bafa4e2a9afb43a6d74a9c11cda740c67a3534f97484e055e05b98afb2d5ac149a1e333b7b685a1e55b79e44526ed961a694a74fab54da3158ba3c49858f8bc0b4ed1cae632a973c52f1f649f89b59b41a0d0fb01bed7b0e8dece8d48ccce7d55afe7ce9a3d73c2427679d58db6260e25df7a9d4fbd91e77ad96e79d3a9e987e3a0cdd269a4cd6506bbeb2264201a8561272388f68453f54bc")
+        );
+
+        authService.getNode().addDependency(authDBHealthCheck);
+        authService.getNode().addDependency(authDatabase);
+
+
+        FargateService billingService = createFargateService(
+                "BillingService",
+                "billing-service",
+                List.of(8084, 9090),
+                null,
+                null
+        );
+
+        FargateService analyticsService = createFargateService(
+                "AnalyticsService",
+                "analytics-service",
+                List.of(8082),
+                null,
+                null
+        );
+
+        analyticsService.getNode().addDependency(mskCluster);
+
+        FargateService patientService = createFargateService(
+                "PatientService",
+                "patient-service",
+                List.of(8080),
+                patientDatabase,
+                Map.of(
+                        "BILLING_SERVICE_ADDRESS", "host.docker.internal",
+                        "BILLING_SERVICE_GRPC_PORT", "9090"
+                )
+        );
+
+        patientService.getNode().addDependency(patientDatabase);
+        patientService.getNode().addDependency(patientDBHealthCheck);
+        patientService.getNode().addDependency(billingService);
+        patientService.getNode().addDependency(mskCluster);
+
     }
 
     private Vpc createVpc() {
